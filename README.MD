@@ -1,21 +1,24 @@
-Cassandra: Detecting Trojaned Networks from Adversarial Perturbations
+## Cassandra: Detecting Trojaned Networks from Adversarial Perturbations
 
 
 Requirements:
-1)Python 3.6 (Anaconda3):
-  conda create -n envname python==3.7 anaconda
-  conda activate envname
+1) Python 3.6 (Anaconda3):
+```bash
+conda create -n envname python==3.7 anaconda
+conda activate envname
+```
 2)Pytorch >=1.4:
+```bash
 conda install pytorch torchvision -c pytorch
-3)Geffnet and scikit-image
-   pip install geffnet scikit-image
+```
+3) Geffnet and scikit-image
+```bash
+pip install geffnet scikit-image
+```
 
-Data: download NIST-Round0 data from https://data.nist.gov/od/id/mds2-2175
-      and save it in ./data/
+Data: download NIST-Round0 data from https://data.nist.gov/od/id/mds2-2175 and save it in ./data/
 
-Generate meta data for NIST-Round0  models, run
-python data_pre.py
-output is  data_meta.txt and then split the data into data_meta_tain.txt and data_meta_test.txt
+Generate meta data for NIST-Round0  models, run python data_pre.py output is data_meta.txt and then split the data into data_meta_tain.txt and data_meta_test.txt
 
 Training
 To train the model(s) in the paper, run these commands
