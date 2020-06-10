@@ -63,7 +63,7 @@ To evaluate my pretrained model download pretrained model from: [Google Drive Li
 
 | Model | Precision |
 | --- | --- |
-| mobilenetv3_0.95_0.925_mnet.pth | 0.95 |
+|  [mobilenetv3_0.95_0.925_mnet.pth](https://drive.google.com/file/d/1gjrKbiVmYJwNujHN-m9kziy6ViERjezx/view?usp=sharing) | 0.95 |
 
 
 
