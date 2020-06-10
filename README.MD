@@ -47,13 +47,16 @@ The generated model will be saved in `./models/detector/pretrained/`
 
 ### Evaluation
 
+Run evaluation using
+
+```
+python eval.py
+```
 
 ### Pre-Trained Models
 
-To evaluate my pretrained model:
-1) download pretrained model from: [Google Drive Link](https://drive.google.com/file/d/1gjrKbiVmYJwNujHN-m9kziy6ViERjezx/view?usp=sharing) and save it to `./models/detector/pretrained/`
-2) run 
-python eval.py
+To evaluate my pretrained model download pretrained model from: [Google Drive Link](https://drive.google.com/file/d/1gjrKbiVmYJwNujHN-m9kziy6ViERjezx/view?usp=sharing) and save it to `./models/detector/pretrained/` before running evaluation.
+
 
 
 ### Results
