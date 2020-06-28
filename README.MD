@@ -34,7 +34,7 @@ python pert_gen.py --meta_file ./data/data_meta_train.txt --pert_loc ./Pert/pert
 3) generate l2 norm bounded adversarial perturbations for training and test set
 and save them to `./Pert/pert_mb/train_l2` and `./Pert/pert_mb/test_l2` respectively by running:
 ```
-python pert_gen.py --meta_file ./data/data_meta_train.txt --pert_loc ./Pert/pert_mb/train_l2 --max_iter 5 --p_norm 2
+python pert_gen.py --meta_file ./data/data_meta_train.txt --pert_loc ./Pert/pert_mb/train_l2 --max_iter 5 --p_norm 3 --p_value 40
 ```
 
 4) train the model
