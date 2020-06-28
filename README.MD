@@ -29,15 +29,14 @@ To train the model(s) in the paper, run these commands
 1) generate l infinity norm bounded adversarial perturbations for training and test set
 and save them to `./Pert/pert_mb/train_inf` and `./Pert/pert_mb/test_inf` respectively by running:
 ```
-python pert_gen_mb.py
-python pert_gen_mb_test.py 
+python pert_gen.py --meta_file ./data/data_meta_train.txt --pert_loc ./Pert/pert_mb/train_inf --max_iter 5 --p_norm 2
 ```
 3) generate l2 norm bounded adversarial perturbations for training and test set
 and save them to `./Pert/pert_mb/train_l2` and `./Pert/pert_mb/test_l2` respectively by running:
 ```
-python pert_gen_l2.py
-python pert_gen_l2_test.py
+python pert_gen.py --meta_file ./data/data_meta_train.txt --pert_loc ./Pert/pert_mb/train_l2 --max_iter 5 --p_norm 2
 ```
+
 4) train the model
 ```
 python train.py
