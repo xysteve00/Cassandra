@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 from PIL import Image
 import torch.backends.cudnn as cudnn
 import sys
-from transform_file import transform, cut, convert
+# from transform_file import transform, cut, convert
 from targetmodel import MyDataset, MyDataset_norm, norm_img, norm_img_test
 import random
 import skimage.io
@@ -28,7 +28,7 @@ def project_lp(v, xi, p):
 
     return v
 
-def generate(dataset,testset, net, max_iter_uni=np.inf,  delta=0.2, xi=10, p=np.inf, num_classes=43, overshoot=0.2, max_iter_df=20):
+def generate(PATH_DATASETS, dataset,testset, net, max_iter_uni=np.inf,  delta=0.2, xi=10,pv=40, p=np.inf, num_classes=43, overshoot=0.2, max_iter_df=20):
     '''
 
     :param path:
@@ -61,7 +61,7 @@ def generate(dataset,testset, net, max_iter_uni=np.inf,  delta=0.2, xi=10, p=np.
     #     sys.exit()
     img_trn = []
     img_tst = []
-    with open(dataset, 'r') as f:
+    with open(os.path.join(PATH_DATASETS,dataset), 'r') as f:
         for line in f:
             line = line.rstrip()
             line = line.strip('\n')
@@ -69,7 +69,7 @@ def generate(dataset,testset, net, max_iter_uni=np.inf,  delta=0.2, xi=10, p=np.
             words = line.split(',')
             img_trn.append((words[0], int(words[1])))
 
-    with open(testset, 'r') as f:
+    with open(os.path.join(PATH_DATASETS,testset), 'r') as f:
         for line in f:
             line = line.rstrip()
             line = line.strip('\n')
@@ -120,7 +120,7 @@ def generate(dataset,testset, net, max_iter_uni=np.inf,  delta=0.2, xi=10, p=np.
                     v[:, :, 0] += dr[0, 0, :, :]
                     v[:, :, 1] += dr[0, 1, :, :]
                     v[:, :, 2] += dr[0, 2, :, :]
-                    v = project_lp(v,10,3)
+                    v = project_lp(v,pv,p)
 
         print('perturbation %f: '% np.max(v[:,:,0]))
         iter = iter + 1
@@ -143,10 +143,10 @@ def generate(dataset,testset, net, max_iter_uni=np.inf,  delta=0.2, xi=10, p=np.
             embedv_tot_p = torch.zeros(1,num_classes)
             embm_p = torch.zeros(num_classes,num_classes)
 
-            test_data_orig = MyDataset_norm(txt=testset, transform=transform)
+            test_data_orig = MyDataset_norm(txt=testset)
             batch = len(test_data_orig)
             test_loader_orig = DataLoader(dataset=test_data_orig, batch_size=batch, pin_memory=True)
-            test_data_pert = MyDataset_norm(txt=testset, pert=v, transform=transform)
+            test_data_pert = MyDataset_norm(txt=testset, pert=v)
             test_loader_pert = DataLoader(dataset=test_data_pert, batch_size=batch, pin_memory=True)
 
             for batch_idx, (inputs, labels) in enumerate(test_loader_orig):
